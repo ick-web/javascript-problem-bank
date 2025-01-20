@@ -13,7 +13,12 @@
 
 function calcTotal(price, quantity) {
   //Todo
+  if(quantity){
+    return price * quantity
+  } else{
+  quantity = 1;
+  return price * quantity
+  }
 }
-
 // export 를 수정하지 마세요.
 export { calcTotal };
