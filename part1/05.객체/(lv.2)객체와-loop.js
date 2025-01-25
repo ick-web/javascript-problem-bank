@@ -10,6 +10,9 @@
  */
 function countProperties(obj) {
   // TODO
+  for(const prop in obj){
+    return prop.length
+  }
 }
 
 export { countProperties };
