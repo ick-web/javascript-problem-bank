@@ -20,7 +20,10 @@
  */
 
 // TODO: findUserByName 함수를 작성하세요.
-function findUserByName() {}
+function findUserByName(users, name) {
+    users.find((u) => name === u)
+
+}
 
 // TODO: findIndexOf 함수를 작성하세요.
 function findIndexOf() {}
