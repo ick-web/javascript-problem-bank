@@ -17,7 +17,17 @@
  *
  * @returns {number}
  */
-function skipAndStop() {}
+function skipAndStop() {
+    let odd = 0;
+    for(let i = 0; i < 11; i++){
+        if(i % 2 === 0){
+            continue;
+        }else if (i % 2 === 1 && i < 8){
+            odd += i
+        }
+    }
+    return odd;
+}
 
 // export를 수정하지 마세요.
 export { skipAndStop };
