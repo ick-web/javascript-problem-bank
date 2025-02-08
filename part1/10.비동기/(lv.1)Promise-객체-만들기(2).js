@@ -5,7 +5,17 @@
  *
  * @returns {Promise<string>}
  */
-function returnHello() {}
+function returnHello() {
+    const promise = new Promise((resolve,reject)=> {
+        let success = true;
+        if(success) {
+            resolve("Hello")
+        }else{
+            reject("Error")
+        }
+    })
+    return promise;
+}
 
 // export를 수정하지 마세요.
 export { returnHello };
