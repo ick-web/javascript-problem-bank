@@ -9,7 +9,18 @@
  * @returns {string}
  */
 
-function reverseString(str) {}
+function reverseString(str) {
+    let reversed = "";
+  if (typeof str !== "string") {
+    return "";
+  }else{
+  for (let i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+  return reversed;
+  }
+  
+}
 
 // export 를 수정하지 마세요.
 export { reverseString };
