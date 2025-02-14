@@ -14,11 +14,7 @@
 function getFrequency(arr) {
     let newArr = new Map();
     arr.forEach((a) => {
-        if(!newArr.has(a)){
-            newArr.set(a, 1);
-        }else{
-            newArr.set(a, newArr.get(a) + 1);
-        }
+        newArr.set(a, (newArr.get(a) || 0) + 1) // 초기값을 0으로 설정
     })
     return Object.fromEntries(newArr);
 }
