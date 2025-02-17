@@ -16,7 +16,7 @@ function getFrequency(arr) {
     arr.forEach((a) => {
         newArr.set(a, (newArr.get(a) || 0) + 1) // 초기값을 0으로 설정
     })
-    return Object.fromEntries(newArr);
+    return Object.fromEntries(newArr);  //키값쌍의 목록 객체로 변경
 }
 
 
