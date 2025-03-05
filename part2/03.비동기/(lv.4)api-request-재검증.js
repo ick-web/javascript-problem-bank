@@ -33,6 +33,13 @@ async function fetch(endpoint, token) {
 async function apiRequest(endpoint, token = currentToken) {
   // TODO: currentToken이 "expired"이면 refreshToken() 후 재요청,
   //       currentToken이 "valid"면 바로 fetch
+  if (currentToken === "expired") {
+    const newToken = await refreshToken();  // 새 토큰 얻기
+    return fetch(endpoint, newToken);  // 새 토큰으로 데이터 요청
+  } else {
+    // currentToken이 "valid"면 바로 fetch 호출
+    return fetch(endpoint, token);
+  }
 }
 
 // export를 수정하지 마세요.
