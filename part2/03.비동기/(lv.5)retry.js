@@ -10,7 +10,20 @@
  * @returns {Promise<any>}
  */
 
-function retryRequest(promiseFactory, retries) {}
+async function retryRequest(promiseFactory, retries) {
+    let lastError;
+
+    for (let i = 0; i <= retries; i++) {
+        try {
+            return await promiseFactory(); // 성공하면 결과 반환
+        } catch (error) {
+            lastError = error; // 실패 시 마지막 에러 저장
+            console.log(`재시도 중... (${i + 1}/${retries})`);
+        }
+    }
+
+    throw lastError; // 모든 시도가 실패하면 마지막 에러 반환
+}
 
 // export 를 수정하지 마세요.
 export { retryRequest };
