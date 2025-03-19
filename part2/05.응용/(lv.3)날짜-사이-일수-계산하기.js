@@ -16,7 +16,7 @@ function daysBetween(date1, date2) {
   const d1 = new Date(date1);
   const d2 = new Date(date2);
   let diffTime = d2.getTime() - d1.getTime();
-  let diffDays = diffTime / (1000 * 60 * 60 * 24);  //밀리세컨 * 초 * 분 * 시
+  let diffDays = diffTime / (1000 * 60 * 60 * 24); //밀리세컨 * 초 * 분 * 시
   return Math.abs(diffDays);
 }
 
