@@ -10,7 +10,24 @@
  * @returns {string}
  */
 
-function formatDate(date) {}
+function plusZero(date) {
+  return (date = date < 10 ? "0" + date : date);
+}
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = plusZero(date.getMonth() + 1);
+  const day = plusZero(date.getDate());
+  const hour = plusZero(date.getHours());
+  const minute = plusZero(date.getMinutes());
+
+  return `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
+
+  //   const today3 = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+  //     2,
+  //     "0"
+  //   )}-${String(date.getDate()).padStart(2, "0")}`;
+}
 
 // export를 수정하지 마세요.
 export { formatDate };
