@@ -11,7 +11,15 @@
 
 // TODO: 함수를 작성하세요 (예: toggleCase)
 function toggleCase(str) {
-  // TODO
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    if ("a" <= str[i] && str[i] <= "z") {
+      result += str[i].toUpperCase();
+    } else {
+      result += str[i].toLowerCase();
+    }
+  }
+  return result;
 }
 
 // export 를 수정하지 마세요.
