@@ -22,7 +22,25 @@
  */
 
 // TODO: asyncDataMerger 함수를 작성하세요.
-async function asyncDataMerger(...asyncFunctions) {}
+async function asyncDataMerger(...asyncFunctions) {
+  const results = await Promise.all(asyncFunctions.map((fn) => fn()));
+
+  const merged = {};
+
+  for (const arr of results) {
+    for (const item of arr) {
+      const { id } = item;
+      if (!merged[id]) {
+        merged[id] = {};
+      }
+
+      merged[id] = { ...merged[id], ...item };
+    }
+  }
+
+  const finalArray = Object.values(merged).sort((a, b) => a.id - b.id);
+  return finalArray;
+}
 
 // export를 수정하지 마세요.
 export { asyncDataMerger };
