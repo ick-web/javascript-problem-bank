@@ -11,7 +11,20 @@
  * @returns {object}
  */
 
-function pickKeys(obj, keys) {}
+function pickKeys(obj, keys) {
+  // 결과를 저장할 새 객체 생성
+  const result = {};
+
+  // keys 배열의 각 키에 대해 반복
+  for (const key of keys) {
+    // 키가 obj에 존재하는 경우에만 result에 추가
+    if (key in obj) {
+      result[key] = obj[key];
+    }
+  }
+
+  return result;
+}
 
 // export 를 수정하지 마세요.
 export { pickKeys };
