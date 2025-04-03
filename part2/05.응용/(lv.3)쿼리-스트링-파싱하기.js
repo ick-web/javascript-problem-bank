@@ -10,6 +10,34 @@
  * @returns {object}
  */
 
-function parseQueryString(queryString) {}
+function parseQueryString(queryString) {
+  if (!queryString || queryString === "?") {
+    return {};
+  }
+
+  // 2. 맨 앞의 '?' 제거
+  const query = queryString.substring(1);
+
+  // 3. 빈 문자열이면 빈 객체 반환
+  if (query === "") {
+    return {};
+  }
+
+  // 4. '&'로 각 파라미터 쌍 분리
+  const pairs = query.split("&");
+
+  // 5. 결과 객체 생성
+  const result = {};
+
+  // 6. 각 파라미터 쌍을 처리
+  pairs.forEach((pair) => {
+    // '='로 키와 값 분리
+    const [key, value] = pair.split("=");
+    // 값이 없으면 빈 문자열로 처리
+    result[key] = value || "";
+  });
+
+  return result
+}
 
 export { parseQueryString };
