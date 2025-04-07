@@ -36,6 +36,48 @@
  * @returns {Array}
  */
 
-function filterComplexData(data, conditions) {}
+function filterComplexData(data, conditions) {
+  // 중첩된 프로퍼티 값을 가져오는 도우미 함수
+  function getNestedProperty(obj, path) {
+    // '.' 기준으로 경로를 나누어 배열로 만듦
+    const keys = path.split(".");
+    // 초기값은 객체 자체
+    let value = obj;
+
+    // 각 키를 순회하며 중첩된 값을 찾음
+    for (const key of keys) {
+      // 해당 키가 없으면 undefined 반환
+      if (value === undefined || value === null) {
+        return undefined;
+      }
+      value = value[key];
+    }
+
+    return value;
+  }
+
+  // 주어진 데이터를 조건에 따라 필터링
+  return data.filter((item) => {
+    // 모든 조건에 대해 검사
+    for (const [key, conditionValue] of Object.entries(conditions)) {
+      const itemValue = getNestedProperty(item, key);
+
+      // 배열인 경우 (tags와 같은)
+      if (Array.isArray(itemValue)) {
+        // 조건값이 배열에 포함되어 있는지 확인
+        if (!itemValue.includes(conditionValue)) {
+          return false;
+        }
+      }
+      // 일반 값인 경우 (info.active와 같은)
+      else if (itemValue !== conditionValue) {
+        return false;
+      }
+    }
+
+    // 모든 조건을 통과한 경우
+    return true;
+  });
+}
 
 export { filterComplexData };
