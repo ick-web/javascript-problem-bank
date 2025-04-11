@@ -24,7 +24,32 @@
  */
 
 // TODO: scheduleNextAvailableTime 함수를 작성하세요.
-function scheduleNextAvailableTime(reservations, timeLength) {}
+function scheduleNextAvailableTime(reservations, timeLength) {
+  // 예약이 없으면 0 반환
+  if (reservations.length === 0) {
+    return 0;
+  }
+
+  // 시작 시간 기준으로 예약들 정렬
+  reservations.sort((a, b) => a.start - b.start);
+
+  // 첫 번째 예약 이전은 고려하지 않음 (문제 조건 4)
+
+  // 예약들 사이의 간격 확인
+  for (let i = 0; i < reservations.length - 1; i++) {
+    const currentEnd = reservations[i].end;
+    const nextStart = reservations[i + 1].start;
+    const gap = nextStart - currentEnd;
+
+    // 간격이 충분하면 현재 예약의 end 반환
+    if (gap >= timeLength) {
+      return currentEnd;
+    }
+  }
+
+  // 모든 간격이 부족하면 마지막 예약의 end 반환
+  return reservations[reservations.length - 1].end;
+}
 
 // export 를 수정하지 마세요.
 export { scheduleNextAvailableTime };
